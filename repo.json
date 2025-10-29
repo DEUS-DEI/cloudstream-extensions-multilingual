@@ -3,6 +3,6 @@
     "description": "Cloudstream Non-english Plugin Repository",
     "manifestVersion": 1,
     "pluginLists": [
-      "https://github.com/DEUS-DEI/codecloudstream-extensions-multilingual/raw/branch/builds/plugins.json"
+      "https://raw.githubusercontent.com/DEUS-DEI/codecloudstream-extensions-multilingual/builds/plugins.json"
     ]
 }
