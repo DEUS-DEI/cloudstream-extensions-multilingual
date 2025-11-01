@@ -21,7 +21,7 @@ class MonoschinosProvider : MainAPI() {
         }
     }
 
-    override var mainUrl = "https://monoschinos2.com"
+    override var mainUrl = "https://monoschino2.com"
     override var name = "Monoschinos"
     override var lang = "es"
     override val hasMainPage = true
@@ -140,7 +140,7 @@ class MonoschinosProvider : MainAPI() {
         app.get(data).document.select("div.playother p").forEach {
             val encodedurl = it.select("p").attr("data-player")
             val urlDecoded = base64Decode(encodedurl)
-            val url = (urlDecoded).replace("https://monoschinos2.com/reproductor?url=", "")
+            val url = (urlDecoded).replace("https://monoschino2.com/reproductor?url=", "")
             if (url.startsWith("https://www.fembed.com")) {
                 val extractor = FEmbed()
                 extractor.getUrl(url).forEach { link ->

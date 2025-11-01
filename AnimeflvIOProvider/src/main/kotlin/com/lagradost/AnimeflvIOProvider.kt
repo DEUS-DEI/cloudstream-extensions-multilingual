@@ -11,8 +11,8 @@ import com.lagradost.cloudstream3.utils.loadExtractor
 import java.util.*
 
 class AnimeflvIOProvider : MainAPI() {
-    override var mainUrl = "https://animeflv.io" //Also scrapes from animeid.to
-    override var name = "Animeflv.io"
+    override var mainUrl = "https://www3.animeflv.net" //Also scrapes from animeid.to
+    override var name = "Animeflv"
     override var lang = "es"
     override val hasMainPage = true
     override val hasChromecastSupport = true
@@ -72,13 +72,13 @@ class AnimeflvIOProvider : MainAPI() {
 
     override suspend fun search(query: String): List<SearchResponse> {
         val headers = mapOf(
-            "Host" to "animeflv.io",
+            "Host" to "www3.animeflv.net",
             "User-Agent" to USER_AGENT,
             "X-Requested-With" to "XMLHttpRequest",
             "DNT" to "1",
-            "Alt-Used" to "animeflv.io",
+            "Alt-Used" to "www3.animeflv.net",
             "Connection" to "keep-alive",
-            "Referer" to "https://animeflv.io",
+            "Referer" to "https://www3.animeflv.net",
         )
         val url = "$mainUrl/search.html?keyword=$query"
         val document = app.get(
@@ -202,15 +202,15 @@ class AnimeflvIOProvider : MainAPI() {
                 json.source.forEach { source ->
                     if (source.file.contains("m3u8")) {
                         generateM3u8(
-                            "Animeflv.io",
+                            "Animeflv",
                             source.file,
                             "https://animeid.to",
                             headers = mapOf("Referer" to "https://animeid.to")
                         ).apmap {
                             callback(
                                 ExtractorLink(
-                                    "Animeflv.io",
-                                    "Animeflv.io",
+                                    "Animeflv",
+                                    "Animeflv",
                                     it.url,
                                     "https://animeid.to",
                                     getQualityFromName(it.quality.toString()),
