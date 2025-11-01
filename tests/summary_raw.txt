@@ -1,0 +1,18 @@
+AnimefenixProvider|ttps://animefenix2.tv|HTTP/2 200 | ok (contains anime-related keywords)
+AnimeflvIOProvider|ttps://www3.animeflv.net|HTTP/1.1 400 Bad Request| uncertain (no obvious anime keywords in snippet)
+AnimeflvnetProvider|ttps://www3.animeflv.net|HTTP/1.1 400 Bad Request| uncertain (no obvious anime keywords in snippet)
+CinecalidadProvider|ttps://cinecalidad.lol|HTTP/2 301 | ok (contains anime-related keywords)
+CuevanaProvider|ttps://cuevana3.me|HTTP/2 200 | uncertain (no obvious anime keywords in snippet)
+DoramasYTProvider|ttps://doramasyt.com|(no response)| uncertain (no obvious anime keywords in snippet)
+ElifilmsProvider|/ElifilmsProvider/src/main/kotlin/com/lagradost/ElifilmsProvider.kt:8:    override var mainUrl: String = "https://elifilms.net"|(no response)| uncertain (no obvious anime keywords in snippet)
+EntrepeliculasyseriesProvider|ttps://entrepeliculasyseries.nz|HTTP/2 200 | ok (contains anime-related keywords)
+EstrenosDoramasProvider|ttps://www23.estrenosdoramas.net|(no response)| uncertain (no obvious anime keywords in snippet)
+JKAnimeProvider|ttps://jkanime.net|HTTP/1.1 400 Bad Request| uncertain (no obvious anime keywords in snippet)
+MonoschinosProvider|ttps://monoschino2.com|HTTP/1.1 400 Bad Request| uncertain (no obvious anime keywords in snippet)
+MundoDonghuaProvider|ttps://www.mundodonghua.com|HTTP/2 200 | uncertain (no obvious anime keywords in snippet)
+PeliSmartProvider|ttps://pelismart.com|HTTP/1.1 301 Moved Permanently| uncertain (no obvious anime keywords in snippet)
+PelisflixProvider|ttps://pelisflix.li|HTTP/1.1 302 Found| uncertain (no obvious anime keywords in snippet)
+PelisplusHDProvider|ttps://pelisplushd.cam|HTTP/2 301 | ok (contains anime-related keywords)
+PelisplusProvider|ttps://pelisplus.icu|(no response)| uncertain (no obvious anime keywords in snippet)
+SeriesflixProvider|ttps://seriesflix.video|HTTP/2 302 | uncertain (no obvious anime keywords in snippet)
+TocanimeProvider|ttps://tocanime.co|HTTP/1.1 400 Bad Request| uncertain (no obvious anime keywords in snippet)
