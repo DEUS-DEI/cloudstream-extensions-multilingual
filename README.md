@@ -50,3 +50,49 @@ Notas rápidas:
 - Para providers con 4xx/403/400 o redirecciones, se recomienda probar desde la app real (con las cabeceras y cookies que el provider implementa) y/o ajustar cabeceras (Host/Origin/Referer) en el código del provider.
 
 Si quieres, hago push de los commits y abro un PR con este README actualizado y los archivos de tests.
+
+## Resumen y requisitos para compilar
+
+Resumen corto:
+- Los providers solicitados (AnimefenixProvider, AnimeflvIOProvider, AnimeflvnetProvider, JKAnimeProvider, MonoschinosProvider, MundoDonghuaProvider, TocanimeProvider) han sido verificados con pruebas HTTP desde el contenedor. Algunos devuelven 200 y HTML válido; otros requieren cabeceras específicas (Host/Referer/Origin) o manejo de Cloudflare para poder scrapear correctamente desde la app.
+
+Requisitos mínimos para compilar en este repositorio:
+
+- JDK: Java 11 (recomendado) instalado y en PATH. Aunque el código usa jvmTarget 1.8, el Android Gradle Plugin 7.x funciona mejor con Java 11.
+- Android SDK: Plataformas y Build-tools para API 30 instaladas (compileSdkVersion = 30). Tener `platforms;android-30` y `build-tools;30.0.3` preferiblemente.
+- Android SDK Command-line tools (sdkmanager) para instalar y aceptar licencias.
+- Gradle wrapper incluido (usar `./gradlew`) — no necesitas instalar Gradle globalmente.
+- Variables de entorno: `ANDROID_SDK_ROOT` o `ANDROID_HOME` apuntando al SDK instalado.
+- Conexión a Internet durante la compilación para que Gradle descargue dependencias (kotlin plugin, maven repos, etc.).
+
+Instalación mínima en Ubuntu (ejemplo):
+
+```bash
+# instalar JDK 11
+sudo apt update && sudo apt install -y openjdk-11-jdk
+
+# descargar Android SDK command line tools (https://developer.android.com/studio#command-tools)
+# descomprimirlo y exportar ANDROID_SDK_ROOT (ejemplo en ~/Android/Sdk)
+export ANDROID_SDK_ROOT="$HOME/Android/Sdk"
+mkdir -p "$ANDROID_SDK_ROOT"
+# luego usar sdkmanager para instalar plataformas y build-tools
+${ANDROID_SDK_ROOT}/cmdline-tools/bin/sdkmanager --sdk_root="$ANDROID_SDK_ROOT" "platform-tools" "platforms;android-30" "build-tools;30.0.3"
+yes | ${ANDROID_SDK_ROOT}/cmdline-tools/bin/sdkmanager --sdk_root="$ANDROID_SDK_ROOT" --licenses
+```
+
+Cómo compilar un provider específico (desde la raíz del repo):
+
+```bash
+# compilar (tarea definida por el plugin cloudstream)
+./gradlew AnimefenixProvider:make
+
+# o para deploy con adb al dispositivo conectado (si lo necesitas)
+./gradlew AnimefenixProvider:deployWithAdb
+```
+
+Notas importantes de build:
+- Usa el Gradle wrapper (`./gradlew`) para asegurar la versión correcta de Gradle.
+- Si la compilación falla por versión de Java, instala Java 11 y reinicia el terminal/sesion.
+- Para providers que devuelvan 4xx/403 en pruebas, la ejecución real dentro de la app (o emulador) usando las cabeceras definidas en cada provider suele ser suficiente. Si no, se necesita depurar con logs o con pruebas de scraping más profundas (HEADLESS browser / cookies / JS).
+
+Si quieres que aplique automáticamente cabeceras adicionales en los providers que lo requieran (AnimeflvIO, Animeflvnet, JKAnime, Monoschinos, Tocanime), puedo hacerlo y ejecutar otra ronda de pruebas.
