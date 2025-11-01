@@ -12,7 +12,7 @@ import java.util.*
 
 class AnimefenixProvider:MainAPI() {
 
-    override var mainUrl = "https://animefenix.com"
+    override var mainUrl = "https://animefenix2.tv"
     override var name = "Animefenix"
     override var lang = "es"
     override val hasMainPage = true
@@ -174,9 +174,9 @@ class AnimefenixProvider:MainAPI() {
                     codestream.contains("player=6&amp") -> "https://www.yourupload.com/embed/"+cleanStreamID(codestream)
                     codestream.contains("player=12&amp") -> "http://ok.ru/videoembed/"+cleanStreamID(codestream)
                     codestream.contains("player=4&amp") -> "https://sendvid.com/"+cleanStreamID(codestream)
-                    codestream.contains("player=9&amp") -> "AmaNormal https://www.animefenix.com/stream/amz.php?v="+cleanStreamID(codestream)
-                    codestream.contains("player=11&amp") -> "AmazonES https://www.animefenix.com/stream/amz.php?v="+cleanStreamID(codestream)
-                    codestream.contains("player=22&amp") -> "Fireload https://www.animefenix.com/stream/fl.php?v="+cleanStreamID(codestream)
+                    codestream.contains("player=9&amp") -> "AmaNormal https://animefenix2.tv/stream/amz.php?v="+cleanStreamID(codestream)
+                    codestream.contains("player=11&amp") -> "AmazonES https://animefenix2.tv/stream/amz.php?v="+cleanStreamID(codestream)
+                    codestream.contains("player=22&amp") -> "Fireload https://animefenix2.tv/stream/fl.php?v="+cleanStreamID(codestream)
 
                     else -> ""
                 }
