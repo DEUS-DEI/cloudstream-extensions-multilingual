@@ -96,3 +96,31 @@ Notas importantes de build:
 - Para providers que devuelvan 4xx/403 en pruebas, la ejecución real dentro de la app (o emulador) usando las cabeceras definidas en cada provider suele ser suficiente. Si no, se necesita depurar con logs o con pruebas de scraping más profundas (HEADLESS browser / cookies / JS).
 
 Si quieres que aplique automáticamente cabeceras adicionales en los providers que lo requieran (AnimeflvIO, Animeflvnet, JKAnime, Monoschinos, Tocanime), puedo hacerlo y ejecutar otra ronda de pruebas.
+
+### Windows: script automático (PowerShell)
+
+He añadido un script PowerShell que automatiza la preparación mínima de un entorno Windows para compilar providers y ejecutar la compilación usando el Gradle wrapper.
+
+Archivo: `scripts/setup_windows_build.ps1`
+
+Uso básico (en PowerShell, desde la raíz del repo):
+
+```powershell
+cd scripts
+.\setup_windows_build.ps1 -Provider AnimefenixProvider
+```
+
+Qué hace el script:
+- Comprueba que `java` esté en PATH y sea Java 11 o superior.
+- Descarga (si hace falta) las Android command-line tools y las coloca en `%ANDROID_SDK_ROOT%\cmdline-tools\latest` (por defecto usa `%USERPROFILE%\Android\Sdk`).
+- Instala `platform-tools`, `platforms;android-30` y `build-tools;30.0.3` usando `sdkmanager`.
+- Intenta aceptar las licencias automáticamente (puede requerir interacción en algunos casos).
+- Añade `platform-tools` al PATH de la sesión actual y, opcionalmente, lo persiste con `setx` si pasas `-SetEnv`.
+- Ejecuta `gradlew.bat <Provider>:make` para compilar el provider solicitado.
+
+Limitaciones y notas:
+- El script intenta automatizar la aceptación de licencias y la instalación, pero puede requerir intervención manual según la configuración de tu sistema y permisos.
+- Es recomendable ejecutar PowerShell como usuario con permisos para escribir en la carpeta SDK.
+- Si prefieres la GUI, instalar Android Studio y usar su SDK Manager también es válido; el script es útil para entornos sin Android Studio o para automatizar.
+
+Si quieres que cambie algo en el script (por ejemplo, usar un mirror distinto, o forzar rutas diferentes), dime y lo adapto.
