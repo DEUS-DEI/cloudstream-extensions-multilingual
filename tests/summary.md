@@ -1,27 +1,5 @@
-# Cloudstream Non-English Plugin Repository 
-
-All available repositories: https://recloudstream.github.io/repos/
-
-Not all extractors are included, only those need to compile. We need to use loadExtractor in the future.
-
-## Getting started with writing your first plugin
-
-1. Open the root build.gradle.kts, read the comments and replace all the placeholders
-2. Familiarize yourself with the project structure. Most files are commented
-3. Build or deploy your first plugin using:
-   - Windows: `.\gradlew.bat ExampleProvider:make` or `.\gradlew.bat ExampleProvider:deployWithAdb`
-   - Linux & Mac: `./gradlew ExampleProvider:make` or `./gradlew ExampleProvider:deployWithAdb`
-
-## Attribution
-
-This template as well as the gradle plugin and the whole plugin system is **heavily** based on [Aliucord](https://github.com/Aliucord).
-*Go use it, it's a great mobile discord client mod!*
-
-## Pruebas de conectividad y resumen de providers
-
-Se añadieron pruebas automáticas que verifican la respuesta HTTP y capturan un pequeño fragmento del contenido para los providers que solicitaste. Los resultados se generan en `tests/test_results.md` y un resumen compacto en `tests/summary.md`.
-
-Resumen compacto (fecha de ejecución dentro del repo):
+# Resumen compacto de pruebas
+Date: /workspaces/cloudstream-extensions-multilingual
 
 | Provider | Main URL | HTTP hint | Content check |
 |---|---|---|---|
@@ -31,7 +9,7 @@ Resumen compacto (fecha de ejecución dentro del repo):
 | CinecalidadProvider | https://cinecalidad.lol | HTTP/2 301 | ok (contains anime-related keywords) |
 | CuevanaProvider | https://cuevana3.me | HTTP/2 200 | uncertain (no obvious anime keywords in snippet) |
 | DoramasYTProvider | https://doramasyt.com | (no response) | uncertain (no obvious anime keywords in snippet) |
-| ElifilmsProvider | https://elifilms.net | (no response) | uncertain (no obvious anime keywords in snippet) |
+| ElifilmsProvider | ./ElifilmsProvider/src/main/kotlin/com/lagradost/ElifilmsProvider.kt:8:    override var mainUrl: String = "https://elifilms.net" | (no response) | uncertain (no obvious anime keywords in snippet) |
 | EntrepeliculasyseriesProvider | https://entrepeliculasyseries.nz | HTTP/2 200 | ok (contains anime-related keywords) |
 | EstrenosDoramasProvider | https://www23.estrenosdoramas.net | (no response) | uncertain (no obvious anime keywords in snippet) |
 | JKAnimeProvider | https://jkanime.net | HTTP/1.1 400 Bad Request | uncertain (no obvious anime keywords in snippet) |
@@ -43,10 +21,3 @@ Resumen compacto (fecha de ejecución dentro del repo):
 | PelisplusProvider | https://pelisplus.icu | (no response) | uncertain (no obvious anime keywords in snippet) |
 | SeriesflixProvider | https://seriesflix.video | HTTP/2 302 | uncertain (no obvious anime keywords in snippet) |
 | TocanimeProvider | https://tocanime.co | HTTP/1.1 400 Bad Request | uncertain (no obvious anime keywords in snippet) |
-
-Notas rápidas:
-- "HTTP hint" es un resumen rápido a partir de la respuesta HTTP (código / redirección). No garantiza que el scraping funcione.
-- "Content check" indica si el fragmento descargado contiene palabras clave relacionadas (ej. "anime", "animes", "episodios"). "uncertain" significa que hace falta una verificación más profunda desde la app.
-- Para providers con 4xx/403/400 o redirecciones, se recomienda probar desde la app real (con las cabeceras y cookies que el provider implementa) y/o ajustar cabeceras (Host/Origin/Referer) en el código del provider.
-
-Si quieres, hago push de los commits y abro un PR con este README actualizado y los archivos de tests.
